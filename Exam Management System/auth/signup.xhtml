@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Login"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <div class="content-section">
+                <h:form>
+                    <fieldset class="form-group">
+                        <legend class="border-bottom mb-4">Join Afapa</legend>
+                        <h:outputLabel class="text-danger" value="#{authController.message}"></h:outputLabel>
+                        <div class="row pb-3">
+                            <h:outputLabel class="col-3" value="Email*" for="emailField" />
+                            <h:inputText id="emailField" required="true" value="#{authController.selected.email}" title="Enter your Email"/>
+                        </div>
+                        <div class="row pb-3">
+                            <h:outputLabel class="col-3" value="First Name*" for="firstNameField" />
+                            <h:inputText id="firstNameField" required="true" value="#{authController.selected.firstName}" title="Enter your First Name"/>
+                        </div>
+                        <div class="row pb-3">
+                            <h:outputLabel class="col-3" value="Last Name*" for="lastNameField" />
+                            <h:inputText id="lastNameField" required="true" value="#{authController.selected.lastName}" title="Enter your Last Name"/>
+                        </div>
+                        <div class="row pb-3">
+                            <h:outputLabel class="col-3" value="Phone Number" for="emailField" />
+                            <h:inputText id="phoneNumberField" value="#{authController.selected.phoneNumber}" title="Enter your Phone Number"/>
+                        </div>
+                        <div class="row pb-3">
+                            <h:outputLabel class="col-3" value="Password*" for="passwordField" />
+                            <h:inputSecret id="passwordField" required="true" value="#{authController.password}" title="Enter Password">
+                                <f:validateLength minimum="5"/>
+                            </h:inputSecret>
+                        </div>
+                        <!--                        <div class="row pb-3">
+                                                    <h:outputLabel class="col-3" value="Confirm Password*" for="cinfirmPasswordField" />
+                                                    <h:inputSecret id="confirmPasswordField" required="true" value="" title="Confirm your Password" >                          
+                                                    </h:inputSecret>
+                                                </div>-->
+                    </fieldset>
+                    <div class="form-group">
+                        <h:commandButton class="btn btn-outline-info" type="submit" action="#{authController.register}" value="Signup"/>
+                    </div>
+                </h:form>
+                <div class="border-top pt-3">
+                    <small class="text-muted">
+                        Already Have An Account? <h:link class="ml-2" outcome="login">Login</h:link>
+                    </small>
+                </div>
+            </div>
+        </ui:define>
+
+    </ui:composition>
+</html>
+

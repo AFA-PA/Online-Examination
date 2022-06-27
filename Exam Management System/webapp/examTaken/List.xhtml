@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListExamTakenTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListExamTakenEmpty}" rendered="#{examTakenController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{examTakenController.items.rowCount > 0}">
+                    <h:outputText value="#{examTakenController.pagination.pageFirstItem + 1}..#{examTakenController.pagination.pageLastItem + 1}/#{examTakenController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{examTakenController.previous}" value="#{bundle.Previous} #{examTakenController.pagination.pageSize}" rendered="#{examTakenController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{examTakenController.next}" value="#{bundle.Next} #{examTakenController.pagination.pageSize}" rendered="#{examTakenController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{examTakenController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListExamTakenTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListExamTakenTitle_taker}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.taker}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListExamTakenTitle_exam}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.exam}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{examTakenController.prepareView}" value="#{bundle.ListExamTakenViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{examTakenController.prepareEdit}" value="#{bundle.ListExamTakenEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{examTakenController.destroy}" value="#{bundle.ListExamTakenDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{examTakenController.prepareCreate}" value="#{bundle.ListExamTakenCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListExamTakenIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

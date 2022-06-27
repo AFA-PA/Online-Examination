@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Dashbord"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <div class="content-section">
+                <h:panelGroup rendered="#{courseRegistrationController.examCount > 0}">
+                    <h:dataTable value="#{courseRegistrationController.exams}" var="exam" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Exam"/>
+                            </f:facet>
+                            <h:outputText value="#{exam.name}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Time"/>
+                            </f:facet>
+                            <h:outputText value="#{exam.startTime}"/>
+                        </h:column>                        <h:column>
+                            <h:form>
+                                <f:facet name="header">
+                                    <h:outputText value="&nbsp;"/>
+                                </f:facet>
+                                <!--<c:if test="#{courseRegistrationController.isTimePassed(exam)}">true</c:if>-->
+                                <h:commandLink action="#{examController.takeExam}" value="Exams"/>
+                                <h:outputText value=" "/>
+                                <h:commandLink action="#{userController.prepareEdit}" value=""/>
+                                <h:outputText value=" "/>
+                                <h:commandLink action="#{userController.destroy}" value=""/>
+                            </h:form>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+            </div>
+        </ui:define>
+    </ui:composition>
+</html>
