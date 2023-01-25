@@ -1,6 +1,6 @@
-#Online Exam management system use cases
+# Online Exam management system use cases
 
-##UC1: Sign up 
+## UC1: Sign up
     primary actor: visitor
     preccondition: having client application
     Main success Senario: 
@@ -12,7 +12,7 @@
                 reject registeration
         1.a) user has not given necesery info:
                reject registration 
-##UC2: Sign in
+## UC2: Sign in
         p.Actor: user
         precondition: registered user
         MSS:
@@ -24,19 +24,19 @@
                 reject
             1.a) empty credential:
                 reject
-##UC3: Log out
+## UC3: Log out
         P.A: user
         pre.cond:logged in
         MSS:
             1. user logs him self out
 
-##UC4: create  organization
+## UC4: create  organization
         P.A: user
         pre.cond:logged in
         MSS:
 
 
-##UC5: Assign org.Managers
+## UC5: Assign org.Managers
     P.A:org.creator/manager
     pre.cond:organaization and managr exist
     MSS:
@@ -52,7 +52,7 @@
             system rejects the assignment.
 
 
-##UC6: Create an exam:
+## UC6: Create an exam:
     P.A. Organisation manager
     Pre condition:
     MSS:
@@ -63,7 +63,7 @@
         1. 
 
 
-##UC7: Apply for an exam
+## UC7: Apply for an exam
     P.A. Exam Taker
     Pre condition: Logged in
     MSS: 
@@ -77,7 +77,7 @@
 
 
 
-##UC8: Take exam
+## UC8: Take exam
     P.A. Exam Taker
     Pre condition: 
         1. User registered for the exam.
