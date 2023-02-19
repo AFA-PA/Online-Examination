@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.3"
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_3.xsd">
+    <application>
+        <resource-bundle>
+            <base-name>/resources/Bundle</base-name>
+            <var>bundle</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>resourses/Bundle</base-name>
+            <var>bundle</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>resources/Bundle</base-name>
+            <var>bundle</var>
+        </resource-bundle>
+    </application>
+
+    <navigation-rule>
+        <description>admin</description>
+        <from-view-id>/admin/*</from-view-id>
+        <navigation-case>
+            <from-outcome>dashboard</from-outcome>
+            <to-view-id>/admin/dashboard.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <description>login</description>
+        <from-view-id>/auth/login.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>loggedin</from-outcome>
+            <to-view-id>/user/dashboard.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <description>loginPrepare</description>
+        <!--<from-view-id></from-view-id>-->
+        <navigation-case>
+            <from-outcome>login</from-outcome>
+            <to-view-id>/auth/login.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <description>signupPrepare</description>
+        <!--<from-view-id></from-view-id>-->
+        <navigation-case>
+            <from-outcome>signup</from-outcome>
+            <to-view-id>/auth/signup.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <description>dashboardPrepare</description>
+        <!--<from-view-id></from-view-id>-->
+        <navigation-case>
+            <from-outcome>dashboard</from-outcome>
+            <to-view-id>/user/dashboard.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <description>Exam</description>
+        <navigation-case>
+            <from-outcome>take_exam</from-outcome>
+            <to-view-id>/exam/take.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>beginTaking</from-outcome>
+            <to-view-id>/exam/taking.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+</faces-config>

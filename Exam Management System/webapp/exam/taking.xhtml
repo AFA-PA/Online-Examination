@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title><ui:insert name="title">Exam Management System</ui:insert></title>
+        <h:outputStylesheet name="css/jsfcrud.css"/>
+        <h:outputStylesheet name="bootstrap/bootstrap.min.css"/>
+        <h:outputStylesheet name="css/main.css"/>
+    </h:head>
+    <h:body>
+        <header class="site-header">
+            <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+                <div class="container">
+                    <a class="navbar-brand mr-4" href="/faces/index.xhtml"><span class="white">A</span><span class="red">FA</span><span class="black">PA</span><span class="green">Examination</span></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarToggle">
+                        <div class="navbar-nav mr-auto">
+                        </div>
+                        <div class="navbar-nav"></div></div></div>
+            </nav>
+        </header>
+
+        <div class="main content-section">
+            <h:panelGroup id="taking_exam" rendered="true">
+                <h:form title="question">
+                    <h1 class="boldface_sun4 pt-lg-5 pl-5" >#{examController.currentQuestion.question}</h1>
+                    <br/>
+                    <h:selectOneRadio class="col-12" id="choosed" value="#{examController.answer.choosed.id}">
+                        <c:forEach items="#{examController.currentQuestion.choices}" var="choice" >
+                            <f:selectItem class="col-5 mb-2 ml-5" itemValue="#{choice.id}" itemLabel="#{choice.choice}" />
+                        </c:forEach>
+                    </h:selectOneRadio>
+                    <div class="row container mt-3 ml-5">
+                        <c:if test="#{examController.hasPrev()}" var="has_prev" >
+                            <div class="col-2 ml-5"><h:commandButton class="ml-1 mr-1 btn-secondary" action="#{examController.prevQuestion}" value="prev"/></div>
+                        </c:if><c:if test="#{examController.hasNext()}" var="has_next" >
+                            <div class=" col-2 ml-5"><h:commandButton class="ml-1 mr-1 btn-primary" action="#{examController.nextQuestion}" value="next"/></div>
+                        </c:if>
+                        <c:if test="#{not has_next}">
+                            <div class=" col-2 ml-5"><h:commandButton class="ml-1 mr-1 btn-success" action="#{examController.submit}" value="submit"/></div>
+                        </c:if>
+                    </div>
+                </h:form>
+            </h:panelGroup></div>
+    </h:body>
+</html>

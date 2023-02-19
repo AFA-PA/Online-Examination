@@ -4,13 +4,13 @@
  */
 package org.afapa.exam;
 
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.UriInfo;
-import javax.ws.rs.Produces;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
-import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.UriInfo;
 
 /**
  * REST Web Service
@@ -31,6 +31,7 @@ public class UserResource {
 
     /**
      * Retrieves representation of an instance of org.afapa.exam.UserResource
+     *
      * @return an instance of java.lang.String
      */
     @GET
@@ -42,6 +43,7 @@ public class UserResource {
 
     /**
      * PUT method for updating or creating an instance of UserResource
+     *
      * @param content representation for the resource
      */
     @PUT

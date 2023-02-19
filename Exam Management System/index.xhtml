@@ -1,0 +1,146 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Exam Management System</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <h:outputStylesheet name="css/jsfcrud.css"/>
+        <h:outputStylesheet name="bootstrap/bootstrap.min.css"/>
+        <h:outputStylesheet name="css/main.css"/>
+    </h:head>
+    <body>
+        <header class="site-header">
+            <nav class="navbar navbar-expand-md welcome-header navbar-dark bg-steel fixed-top">
+                <div class="container">
+                    <a class="navbar-brand mr-4" href="/faces/index.xhtml"><span class="white">A</span><span class="red">FA</span><span class="black">PA</span><span class="green">Examination</span></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarToggle">
+                        <div class="navbar-nav mr-auto">
+                        </div>
+                        <div class="navbar-nav">
+                            <h:form class="row">
+                                <h:commandLink class="nav-item nav-link" value="Dashboard" action="#{authController.prepareDashboard}"/>
+                                <c:if test="#{authController.loggedin == false}" >
+                                    <h:commandLink class="nav-item nav-link" value="Signup" action="#{authController.prepareSignup}"/>
+                                    <h:commandLink class="nav-item nav-link" value="Login" action="#{authController.prepareLogin}" />
+                                </c:if>
+                                <c:if test="#{authController.loggedin == true}">
+                                    <h:commandLink class="nav-item nav-link" value="Logout"  action="#{authController.logout}" />
+                                </c:if></h:form>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main role="main" class="container-fluid welcome">
+            <div class="container mt-3 ml-5">
+                <h1 class="green">Welcome To AFAPA Examination Center!</h1>
+            </div>
+            <div class="container article ml-4 mt-5">
+                <div class="row">
+                    <div class="col-md-9 col-lg-6">
+                        <p class="article-content"></p>
+                    </div>
+                </div>
+            </div>
+            <!--            <div class="container mt-5 ml-5">
+                            <a href="{% url 'login' %}" class="btn btn-primary ml-5">Sign-in</a>
+                            <a href="{% url 'register' %}" class="btn btn-primary ml-5">Signu-up</a>
+                        </div>-->
+        </main>
+        <h:outputScript name="bootstrap/bootstrap.min.js"/>
+        <h:outputScript name="bootstrap/jquery-3.3.1.slim.min.js"/>
+        <h:outputScript name="bootstrap/popper.min.js"/>
+    </body>
+</html>
+
+
+<!--<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+                <title>Exam Management System</title>
+        <h:outputStylesheet name="css/jsfcrud.css"/>
+        <h:outputStylesheet name="bootstrap/bootstrap.min.css"/>
+        <h:outputStylesheet name="css/main.css"/>
+</h:head>
+<h:body>
+                <header class="site-header">
+                                <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+                                                <div class="container">
+                                                                <a class="navbar-brand mr-4" href="/faces/index.xhtml"><span class="white">A</span><span class="red">FA</span><span class="black">PA</span></a>
+                                                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+                                                                                <span class="navbar-toggler-icon"></span>
+                                                                </button>
+                                                                <div class="collapse navbar-collapse" id="navbarToggle">
+                                                                                <div class="navbar-nav mr-auto">
+                                                                                                <a class="nav-item nav-link" href="{% url 'walaloo' %}">Walaloo</a>
+                                                                                                <a class="nav-item nav-link" href="#">Ciigoo</a>
+                                                                                </div>
+                                                                                 Navbar Right Side 
+                                                                                <div class="navbar-nav">
+                                                                                                <a class="nav-item nav-link" href="{% url 'haaraa' %}">barreessi</a>
+                                                                                                <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
+                                                                                                <a class="nav-item nav-link" href="{% url 'logout' %}?next=/login">Ba`i</a>
+                                                                                                <a class="nav-item nav-link" href="{% url 'login' %}">Seeni</a>
+                                                                                                <a class="nav-item nav-link" href="{% url 'register' %}">Galmaa`i</a>
+                                                                                </div>
+                                                                </div>  
+                                                </div>
+                                </nav>
+                </header>
+
+                <main role="main" class="container">
+                                <div class="row">
+                                                <div class="content-section">
+                                                                                                                                                <br />
+        <h:link class="" outcome="/answer/List" value="Show All Answer Items"/>
+        <br />
+        <h:link outcome="/choice/List" value="Show All Choice Items"/>
+        <br />
+        <h:link outcome="/department/List" value="Show All Department Items"/>
+        <br />
+        <h:link outcome="/organization/List" value="Show All Organization Items"/>
+        <br />
+        <h:link outcome="/question/List" value="Show All Question Items"/>
+        <br />
+        <h:link outcome="/user/List" value="Show All User Items"/>
+        <br />
+        <h:link outcome="/admin/List" value="Show All Admin Items"/>
+        <br />
+        <h:link outcome="/course/List" value="Show All Course Items"/>
+        <br />
+        <h:link outcome="/exam/List" value="Show All Exam Items"/>
+        <br />
+        <h:link outcome="/examTaken/List" value="Show All ExamTaken Items"/>
+        <br />
+</div>
+<div class="col-md-4">
+                                        <div class="content-section">
+                                                        <h3>Our Sidebar</h3>
+                                                        <ul class="list-group">
+                                                                        <li class="list-group-item list-group-item-light">Latest Posts</li>
+                                                                        <li class="list-group-item list-group-item-light">Announcements</li>
+                                                                        <li class="list-group-item list-group-item-light">Calendars</li>
+                                                                        <li class="list-group-item list-group-item-light">etc</li>
+                                                        </ul>
+                                        </div>
+                        </div>
+</div> 
+</main>
+<br />
+        <h:link outcome="/courseRegistration/List" value="Show All CourseRegistration Items"/>
+</h:body>
+
+
+                
+
+</html>
+-->

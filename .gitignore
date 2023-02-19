@@ -1,6 +1,4 @@
 .directory
-/ExamManSys/nbproject/private/
-/ExamManSysClient/nbproject/private/
-/ExamManSys/build/
-/ExamManSys/dist/
-/ExamManSysClient/build/
+/Exam Management System/nbproject/private/
+/Exam Management System/build/
+/Exam Management System/dist/
