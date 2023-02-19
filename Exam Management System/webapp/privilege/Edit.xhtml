@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditPrivilegeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditPrivilegeLabel_heirarchichalPermission}" for="heirarchichalPermission" />
+                    <h:inputText id="heirarchichalPermission" value="#{privilegeController.selected.heirarchichalPermission}" title="#{bundle.EditPrivilegeTitle_heirarchichalPermission}" />
+                    <h:outputLabel value="#{bundle.EditPrivilegeLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{privilegeController.selected.id}" title="#{bundle.EditPrivilegeTitle_id}" />
+                    <h:outputLabel value="#{bundle.EditPrivilegeLabel_grantedTo}" for="grantedTo" />
+                    <h:selectOneMenu id="grantedTo" value="#{privilegeController.selected.grantedTo}" title="#{bundle.EditPrivilegeTitle_grantedTo}" >
+                        <f:selectItems value="#{userController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditPrivilegeLabel_grantedON}" for="grantedON" />
+                    <h:selectOneMenu id="grantedON" value="#{privilegeController.selected.grantedON}" title="#{bundle.EditPrivilegeTitle_grantedON}" >
+                        <f:selectItems value="#{organizationalUnitController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditPrivilegeLabel_permission}" for="permission" />
+                    <h:inputText id="permission" value="#{privilegeController.selected.permission}" title="#{bundle.EditPrivilegeTitle_permission}" />
+                </h:panelGrid>
+                <h:commandLink action="#{privilegeController.update}" value="#{bundle.EditPrivilegeSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditPrivilegeViewLink}"/>
+                <br />
+                <h:commandLink action="#{privilegeController.prepareList}" value="#{bundle.EditPrivilegeShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditPrivilegeIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
