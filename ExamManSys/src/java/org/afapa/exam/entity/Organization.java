@@ -67,4 +67,9 @@ public class Organization extends OrganizationalUnit implements Serializable {
         return "org.afapa.exam.entity.Organization[ id=" + id + " ]";
     }
 
+//    @java.lang.SuppressWarnings(value = "all")
+//    @XmlTransient
+//    public Set<Department> getDepartments() {
+//    }
+
 }

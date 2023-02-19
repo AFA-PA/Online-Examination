@@ -8,6 +8,7 @@ import java.io.Serializable;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.xml.bind.annotation.XmlRootElement;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,6 +20,7 @@ import lombok.Setter;
 @Getter
 @Entity
 @DiscriminatorValue(value = "crs")
+@XmlRootElement
 public class Course extends OrganizationalUnit implements Serializable {
     private static final long serialVersionUID = 100L;
 

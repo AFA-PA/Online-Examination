@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.xml.bind.annotation.XmlRootElement;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,6 +26,7 @@ import lombok.Setter;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "unitType", discriminatorType = DiscriminatorType.STRING, length = 3)
+@XmlRootElement
 public abstract class OrganizationalUnit implements Serializable {
 
     private static final long serialVersionUID = 1L;
