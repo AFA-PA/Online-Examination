@@ -37,10 +37,10 @@ public class Question implements Serializable {
     @NotNull
     private String question;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
     private Exam exam;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "question", fetch = FetchType.EAGER)
+    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "question", fetch = FetchType.EAGER)
     private List<Choice> choices;
 
     /**
@@ -78,7 +78,7 @@ public class Question implements Serializable {
      */
     @Override
     public String toString() {
-        return "org.afapa.exam.entity.Question[ id=" + id + " ]";
+        return question;
     }
 
 }

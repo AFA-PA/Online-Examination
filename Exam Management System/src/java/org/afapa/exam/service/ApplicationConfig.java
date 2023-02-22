@@ -46,7 +46,6 @@ public class ApplicationConfig extends Application {
      * out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
-        resources.add(org.afapa.exam.service.AnswerFacadeREST.class);
         resources.add(org.afapa.exam.service.AuthRest.class);
         resources.add(org.afapa.exam.service.ChoiceFacadeREST.class);
         resources.add(org.afapa.exam.service.CourseFacadeREST.class);

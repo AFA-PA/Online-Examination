@@ -35,10 +35,10 @@ public class Department extends OrganizationalUnit implements Serializable {
 
     private Date createdODate;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
     private Organization organization;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "department")
+    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "department")
     private List<Course> courses;
 
     /**
@@ -76,7 +76,7 @@ public class Department extends OrganizationalUnit implements Serializable {
      */
     @Override
     public String toString() {
-        return "org.afapa.exam.entity.Department[ id=" + id + " ]";
+        return name;
     }
 
     @PrePersist

@@ -6,6 +6,7 @@ package org.afapa.exam.entity;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -15,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
 import javax.xml.bind.annotation.XmlRootElement;
 import lombok.Getter;
 import lombok.Setter;
@@ -41,13 +43,13 @@ public class Exam implements Serializable {
 
     private Timestamp startTime;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
     protected CourseRegistration registration;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "exam")
+    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "exam")
     private List<Question> questions;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "exam")
+    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "exam")
     private List<ExamTaken> examsTaken;
 
     public List<Question> getQuestions() {
@@ -56,6 +58,14 @@ public class Exam implements Serializable {
 
     public void setQuestions(List<Question> qns) {
         this.questions = qns;
+    }
+
+    public Date getDate() {
+        return this.startTime;
+    }
+
+    public void setDate(Date date) {
+        this.startTime = new Timestamp(date.getTime());
     }
 
     /**
@@ -110,7 +120,14 @@ public class Exam implements Serializable {
      */
     @Override
     public String toString() {
-        return "org.afapa.exam.entity.Exam[ id=" + id + " ]";
+        return name;
+    }
+
+    @PrePersist
+    public void PrePersist() {
+        if (startTime == null) {
+//            startTime = Timestamp.from(Instant.now().plusSeconds(3600));
+        }
     }
 
 }

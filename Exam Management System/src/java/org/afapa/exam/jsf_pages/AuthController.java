@@ -1,5 +1,6 @@
 package org.afapa.exam.jsf_pages;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -69,6 +70,7 @@ public class AuthController extends AbstractController implements Serializable {
                 FacesContext.getCurrentInstance()
                         .getExternalContext().getSessionMap().put("user", user);
                 newUser = user;
+                FacesContext.getCurrentInstance().getExternalContext().redirect("/user/dashboard.xhtml");
                 return "loggedin";
             } else {
                 newUser = new User();
@@ -77,6 +79,8 @@ public class AuthController extends AbstractController implements Serializable {
             }
         } catch (NoResultException e) {
             logger.log(Level.INFO, "user with {0} does not exist", newUser.getEmail());
+        } catch (IOException ex) {
+            Logger.getLogger(AuthController.class.getName()).log(Level.SEVERE, null, ex);
         }
         newUser = new User();
         return "";
@@ -151,28 +155,17 @@ public class AuthController extends AbstractController implements Serializable {
             return new ArrayList<>();
         }
         try {
-//            CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-//            cq.select(cq.from(Exam.class));
             if (exams == null) {
-            ArrayList<Long> ids = new ArrayList<>();
-            current.getCourseRegistrations().forEach((CourseRegistration cr) -> {
-                ids.add(cr.getId());
-                logger.log(Level.INFO, "{0} regs", ids.size());
-            });
-
-            exams = em.createQuery("SELECT e FROM Exam e WHERE e.registration.id IN :reg_ids", Exam.class)
-                        .setParameter("reg_ids", ids).getResultList();
+                exams = new ArrayList<>();
+//                em.refresh(current);
+                current.getCourseRegistrations().forEach((CourseRegistration cr) -> {
+                    exams.addAll(em.createQuery("SELECT e FROM Exam e WHERE e.registration.id=:reg_id", Exam.class)
+                            .setParameter("reg_id", cr.getId()).getResultList());
+                    logger.log(Level.INFO, "{0} regs");
+                });
             }
-//            if (exams.size() < 1) {
-//                utx.begin();
-//                exams.forEach((Exam e) -> {
-//                    em.merge(e);
-//                });
-//                utx.commit();}
-//            exams = new Db().getAllExams();
-
         } catch (Exception ex) {
-            Logger.getLogger(AuthController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AuthController.class.getName()).log(Level.SEVERE, "{0}", ex.getMessage());
         }
         return exams;
     }
@@ -194,7 +187,6 @@ public class AuthController extends AbstractController implements Serializable {
             logger.log(Level.SEVERE, "{0}", reg);
             exams = em.createQuery("SELECT e FROM Exam e WHERE e.registration.id=:reg_id", Exam.class).
                     setParameter("reg_id", reg.getId()).getResultList();
-//            exams = new Db().getExams(reg.getId());
         } catch (Exception ex) {
             Logger.getLogger(AuthController.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -31,7 +31,6 @@ import javax.transaction.UserTransaction;
 import lombok.Getter;
 import lombok.Setter;
 import org.afapa.exam.beans.ExamFacade;
-import org.afapa.exam.entity.Answer;
 import org.afapa.exam.entity.Choice;
 import org.afapa.exam.entity.Exam;
 import org.afapa.exam.entity.ExamTaken;
@@ -51,7 +50,7 @@ public class ExamController extends AbstractController implements Serializable {
 
     @Setter
     @Getter
-    private Answer answer;
+    private Choice answer;
 
     private Exam current;
     private DataModel items = null;
@@ -75,7 +74,7 @@ public class ExamController extends AbstractController implements Serializable {
         return Instant.now().toEpochMilli();
     }
 
-    public String take(Exam e) {
+    public String select(Exam e) {
         current = e;
         return "take_exam";
     }
@@ -85,11 +84,29 @@ public class ExamController extends AbstractController implements Serializable {
     }
 
     public boolean isStarted(Exam e) {
+        logger.log(Level.INFO, "{0}", e);
+        if (e == null) {
+            return false;
+        }
         return e.getStartTime().before(Timestamp.from(Instant.now()));
     }
 
     public boolean isOver(Exam e) {
+        if (e == null) {
+            return false;
+        }
         return e.getStartTime().before(Timestamp.from(Instant.now().minusSeconds(e.getMinutesAllowed() * 60)));
+    }
+
+    public ExamTaken getTakenExam(Exam e) {
+        ExamTaken et = new ExamTaken();
+        for (ExamTaken et0 : getCurrentUser().getTakenExams()) {
+            if (et0.getExam() == current) {
+                et = et0;
+                break;
+            }
+        }
+        return et;
     }
 
     public String startTaking() {
@@ -138,7 +155,6 @@ public class ExamController extends AbstractController implements Serializable {
         et.getAnswers().add(answer);
         try {
             utx.begin();
-//            em.merge(answer);
             em.merge(et);
             utx.commit();
         } catch (RollbackException | HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException | SystemException | NotSupportedException ex) {
@@ -188,9 +204,6 @@ public class ExamController extends AbstractController implements Serializable {
         int c = (int) sessionMap.get("cursor");
         ExamTaken et = (ExamTaken) sessionMap.get("taking");
         Question q = et.getExam().getQuestions().get(c);
-        answer = new Answer();
-        answer.setChoosed(new Choice());
-        answer.setForQuestion(q);
         return q;
     }
 
@@ -229,6 +242,7 @@ public class ExamController extends AbstractController implements Serializable {
 
     public String prepareCreate() {
         current = new Exam();
+        current.setId(0l);
         selectedItemIndex = -1;
         return "Create";
     }
@@ -383,7 +397,34 @@ public class ExamController extends AbstractController implements Serializable {
                 throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Exam.class.getName());
             }
         }
+    }
 
+    public void newChoice() {
+        Choice ch = new Choice();
+    }
+
+    public void newQuestion() {
+        Question q = new Question();
+        q.setExam(current);
+        Choice ch = new Choice();
+        ch.setQuestion(q);
+        q.setChoices(new ArrayList<Choice>());
+        q.getChoices().add(ch);
+        current.getQuestions().add(q);
+    }
+
+    public void dropQuestion(Question q) {
+        current.getQuestions().remove(q);
+    }
+
+    public void newChoice(Question q) {
+        Choice ch = new Choice();
+        ch.setQuestion(q);
+        q.getChoices().add(ch);
+    }
+
+    public void dropChoice(Question q, Choice c) {
+        q.getChoices().remove(c);
     }
 
 }

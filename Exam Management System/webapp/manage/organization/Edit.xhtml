@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/manage/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditOrganizationTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:outputText styleClass="mt-3 mb-3 header text-lg-center text-info" value="Organization" />
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditOrganizationLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{organizationController.selected.name}" title="#{bundle.EditOrganizationTitle_name}" />
+                    <h:outputLabel value="#{bundle.EditOrganizationLabel_createdBy}" for="createdBy" />
+                    <h:selectOneMenu id="createdBy" value="#{organizationController.selected.createdBy}" title="#{bundle.EditOrganizationTitle_createdBy}" >
+                        <f:selectItems value="#{userController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditOrganizationLabel_createdOnDate}" for="createdOnDate" />
+                    <h:inputText id="createdOnDate" value="#{organizationController.selected.createdOnDate}" title="#{bundle.EditOrganizationTitle_createdOnDate}" />
+                    <h:outputLabel value="#{bundle.EditOrganizationLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{organizationController.selected.id}" title="#{bundle.EditOrganizationTitle_id}" />
+                    <h:outputLabel value="#{bundle.EditOrganizationLabel_unitType}" for="unitType" />
+                    <h:inputText id="unitType" value="#{organizationController.selected.unitType}" title="#{bundle.EditOrganizationTitle_unitType}" required="true" requiredMessage="#{bundle.EditOrganizationRequiredMessage_unitType}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{organizationController.update}" value="#{bundle.EditOrganizationSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditOrganizationViewLink}"/>
+                <br />
+                <h:commandLink action="#{organizationController.prepareList}" value="#{bundle.EditOrganizationShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditOrganizationIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

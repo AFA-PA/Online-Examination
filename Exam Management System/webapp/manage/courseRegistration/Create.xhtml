@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/manage/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateCourseRegistrationTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:outputText styleClass="mt-3 mb-3 header text-lg-center text-info" value="Registrations" />
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateCourseRegistrationLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{courseRegistrationController.selected.id}" title="#{bundle.CreateCourseRegistrationTitle_id}" required="true" requiredMessage="#{bundle.CreateCourseRegistrationRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateCourseRegistrationLabel_year}" for="year" />
+                    <h:inputText id="year" value="#{courseRegistrationController.selected.year}" title="#{bundle.CreateCourseRegistrationTitle_year}" required="true" requiredMessage="#{bundle.CreateCourseRegistrationRequiredMessage_year}"/>
+                    <h:outputLabel value="#{bundle.CreateCourseRegistrationLabel_semester}" for="semester" />
+                    <h:inputText id="semester" value="#{courseRegistrationController.selected.semester}" title="#{bundle.CreateCourseRegistrationTitle_semester}" />
+                    <h:outputLabel value="#{bundle.CreateCourseRegistrationLabel_course}" for="course" />
+                    <h:selectOneMenu id="course" value="#{courseRegistrationController.selected.course}" title="#{bundle.CreateCourseRegistrationTitle_course}" >
+                        <f:selectItems value="#{courseController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{courseRegistrationController.create}" value="#{bundle.CreateCourseRegistrationSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{courseRegistrationController.prepareList}" value="#{bundle.CreateCourseRegistrationShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateCourseRegistrationIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

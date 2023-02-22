@@ -2,6 +2,7 @@ package org.afapa.exam.jsf_pages;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
+import javax.annotation.Resource;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.component.UIComponent;
@@ -12,8 +13,14 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 import javax.inject.Named;
+import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.PersistenceContext;
+import javax.transaction.UserTransaction;
 import org.afapa.exam.beans.ExamTakenFacade;
+import org.afapa.exam.entity.Exam;
 import org.afapa.exam.entity.ExamTaken;
+import org.afapa.exam.entity.User;
 import org.afapa.exam.jsf_pages.util.JsfUtil;
 import org.afapa.exam.jsf_pages.util.PaginationHelper;
 
@@ -231,4 +238,18 @@ public class ExamTakenController implements Serializable {
 
     }
 
+    @PersistenceContext(unitName = "WebApplicationTest3PU")
+    EntityManager em;
+    @Resource
+    UserTransaction utx;
+
+    public float getResult(User u, Exam e) {
+        try {
+            ExamTaken et = em.createQuery("SELECT et FROM ExamTaken et WHERE et.exam.id=:exam_id AND et.taker.id=:taker_id", ExamTaken.class)
+                    .setParameter("exam_id", e.getId()).setParameter("taker_id", u.getId()).getSingleResult();
+        return et.getResult();
+        } catch (NoResultException ex) {
+            return Float.NaN;
+        }
+    }
 }

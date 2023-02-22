@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/manage/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditExamTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:outputText styleClass="mt-3 mb-3 header text-lg-center text-info" value="Exam" />
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditExamLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{examController.selected.name}" title="#{bundle.EditExamTitle_name}" />
+                    <h:outputLabel value="#{bundle.EditExamLabel_minutesAllowed}" for="minutesAllowed" />
+                    <h:inputText id="minutesAllowed" value="#{examController.selected.minutesAllowed}" title="#{bundle.EditExamTitle_minutesAllowed}" />
+                    <h:outputLabel value="#{bundle.EditExamLabel_startTime}" for="startTime" />
+                    <h:inputText id="startTime" title="Use GM Format: 'mm/dd/yyyy hh:mm AM(PM)'" value="#{examController.selected.date}" >
+                        <f:convertDateTime type="both" dateStyle="short" timeStyle="short" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditExamLabel_registration}" for="registration" />
+                    <h:selectOneMenu id="registration" value="#{examController.selected.registration}" title="#{bundle.EditExamTitle_registration}" >
+                        <f:selectItems value="#{courseRegistrationController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:panelGrid columns="3">
+                    <h:outputText class="text-uppercase" value="questions" />
+                    <h:commandButton class="btn-primary ml-2" action="#{examController.newQuestion}" value="add" />
+                </h:panelGrid>
+                <h:dataTable value="#{examController.selected.questions}" var="qns" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                    <h:column>
+                        <h:commandButton class="btn-secondary ml-2" action="#{examController.dropQuestion(qns)}" value="drop" />
+                    </h:column>
+                    <h:column >
+                        <f:facet name="header">
+                            <h:outputText value="question" />
+                        </f:facet>
+                        <h:inputTextarea required="ture" value="#{qns.question}" />
+                    </h:column>
+                    <h:column>
+                        <h:panelGrid columns="3">
+                            <h:outputText class="text-uppercase" value="choices" />
+                            <h:commandButton class="btn-primary ml-2" action="#{examController.newChoice(qns)}" value="add" />
+                        </h:panelGrid>
+                        <h:dataTable value="#{qns.choices}" var="chs" >
+                            <h:outputText value="choices" />
+                            <h:column><h:commandButton class="btn-secondary ml-2" action="#{examController.dropChoice(qns, chs)}" value="drop" /></h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="choice" />
+                                </f:facet>
+                                <h:inputText required="ture" value="#{chs.choice}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="is correct" />
+                                </f:facet>
+                                <h:selectBooleanCheckbox value="#{chs.correct}" />
+                            </h:column>
+                        </h:dataTable>
+                    </h:column>
+                </h:dataTable>
+
+                <h:commandLink action="#{examController.update}" value="#{bundle.EditExamSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditExamViewLink}"/>
+                <br />
+                <h:commandLink action="#{examController.prepareList}" value="#{bundle.EditExamShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditExamIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -17,7 +17,7 @@
         <header class="site-header">
             <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
                 <div class="container">
-                    <a class="navbar-brand mr-4" href="/faces/index.xhtml"><span class="white">A</span><span class="red">FA</span><span class="black">PA</span><span class="green">Examination</span></a>
+                    <a class="navbar-brand mr-4" href="/index.xhtml"><span class="white">A</span><span class="red">FA</span><span class="black">PA</span><span class="green">Examination</span></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -33,10 +33,13 @@
                 <h:form title="question">
                     <h1 class="boldface_sun4 pt-lg-5 pl-5" >#{examController.currentQuestion.question}</h1>
                     <br/>
-                    <h:selectOneRadio class="col-12" id="choosed" value="#{examController.answer.choosed.id}">
-                        <c:forEach items="#{examController.currentQuestion.choices}" var="choice" >
-                            <f:selectItem class="col-5 mb-2 ml-5" itemValue="#{choice.id}" itemLabel="#{choice.choice}" />
-                        </c:forEach>
+<!--                    <h:selectOneMenu id="choosed" value="# {answerController.selected.choosed}" title="#{bundle.CreateAnswerTitle_choosed}" >
+                        <f:selectItems value="# {choiceController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>-->
+                    <h:selectOneRadio class="col-12" id="choosed"  value="#{examController.answer}">
+                        <!--<c:forEach items="# {examController.currentQuestion.choices}" var="choice" >-->
+                        <f:selectItems class="col-5 mb-2 ml-5" value="#{examController.currentQuestion.choices}" var="choice" itemLabel="#{choice.choice}" />
+                        <!--</c:forEach>-->
                     </h:selectOneRadio>
                     <div class="row container mt-3 ml-5">
                         <c:if test="#{examController.hasPrev()}" var="has_prev" >

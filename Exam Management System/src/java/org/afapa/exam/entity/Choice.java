@@ -5,10 +5,13 @@
 package org.afapa.exam.entity;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.xml.bind.annotation.XmlRootElement;
 import lombok.Getter;
@@ -33,8 +36,11 @@ public class Choice implements Serializable {
 
     private boolean correct;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
     private Question question;
+
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, mappedBy = "answers")
+    private List<ExamTaken> choosedIn;
 
     /**
      *
@@ -71,7 +77,7 @@ public class Choice implements Serializable {
      */
     @Override
     public String toString() {
-        return "org.afapa.exam.entity.Choice[ id=" + id + " ]";
+        return choice;
     }
 
 }

@@ -63,10 +63,10 @@ public class User implements Serializable {
     protected String email;
 
 //    @XmlTransient
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "taker")
+    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "taker")
     private List<ExamTaken> takenExams;
 
-    @ManyToMany(mappedBy = "registeredUsers")
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, mappedBy = "registeredUsers")
     private List<CourseRegistration> courseRegistrations;
 
     public User() {
@@ -118,7 +118,7 @@ public class User implements Serializable {
      */
     @Override
     public String toString() {
-        return "org.afapa.exam.entity.User[ id=" + id + " ]";
+        return this.email;
     }
 
 }

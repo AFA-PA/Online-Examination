@@ -39,12 +39,12 @@ public class Organization extends OrganizationalUnit implements Serializable {
     @NotNull
     private String name;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
     private User createdBy;
 
     private Date createdOnDate;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "organization")
+    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "organization")
     private Set<Department> departments;
 
     /**
@@ -93,7 +93,7 @@ public class Organization extends OrganizationalUnit implements Serializable {
      */
     @Override
     public String toString() {
-        return "org.afapa.exam.entity.Organization[ id=" + id + " ]";
+        return name;
     }
 
     @PrePersist

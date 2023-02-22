@@ -11,11 +11,11 @@
         <h:outputStylesheet name="bootstrap/bootstrap.min.css"/>
         <h:outputStylesheet name="css/main.css"/>
     </h:head>
-    <body>
+    <h:body>
         <header class="site-header">
             <nav class="navbar navbar-expand-md welcome-header navbar-dark bg-steel fixed-top">
                 <div class="container">
-                    <a class="navbar-brand mr-4" href="/faces/index.xhtml"><span class="white">A</span><span class="red">FA</span><span class="black">PA</span><span class="green">Examination</span></a>
+                    <a class="navbar-brand mr-4" href="/index.xhtml"><span class="white">A</span><span class="red">FA</span><span class="black">PA</span><span class="green">Examination</span></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -38,9 +38,9 @@
             </nav>
         </header>
 
-        <main role="main" class="container-fluid welcome">
+        <main role="main" class="container-fluid welcome" style="background-image:  url(#{resource['images:bg.jpg']})" >
             <div class="container mt-3 ml-5 mt-5">
-                <h:outputText style="align-content: center; align-items: center; font-size: xx-large; font-weight: bolder; font-family: sans-serif" value="Welcome To AFAPA Examination Center" />
+                <h:outputText value="Welcome To A.F.A.P.A. Examination Center" style="align-content: center; align-items: center; font-size: xx-large; font-weight: bolder; font-family: sans-serif; color: #0f0; margin-left: 20%; padding-top: 200px;" />
             </div>
             <div class="container article ml-4 mt-5">
                 <div class="row">
@@ -57,7 +57,7 @@
         <h:outputScript name="bootstrap/bootstrap.min.js"/>
         <h:outputScript name="bootstrap/jquery-3.3.1.slim.min.js"/>
         <h:outputScript name="bootstrap/popper.min.js"/>
-    </body>
+    </h:body>
 </html>
 
 
@@ -75,7 +75,7 @@
                 <header class="site-header">
                                 <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
                                                 <div class="container">
-                                                                <a class="navbar-brand mr-4" href="/faces/index.xhtml"><span class="white">A</span><span class="red">FA</span><span class="black">PA</span></a>
+                                                                <a class="navbar-brand mr-4" href="/index.xhtml"><span class="white">A</span><span class="red">FA</span><span class="black">PA</span></a>
                                                                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
                                                                                 <span class="navbar-toggler-icon"></span>
                                                                 </button>

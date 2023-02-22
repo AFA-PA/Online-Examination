@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/manage/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateExamTakenTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:outputText styleClass="mt-3 mb-3 header text-lg-center text-info" value="Taken Exams" />
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateExamTakenLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{examTakenController.selected.id}" title="#{bundle.CreateExamTakenTitle_id}" />
+                    <h:outputLabel value="#{bundle.CreateExamTakenLabel_taker}" for="taker" />
+                    <h:selectOneMenu id="taker" value="#{examTakenController.selected.taker}" title="#{bundle.CreateExamTakenTitle_taker}" >
+                        <f:selectItems value="#{userController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateExamTakenLabel_exam}" for="exam" />
+                    <h:selectOneMenu id="exam" value="#{examTakenController.selected.exam}" title="#{bundle.CreateExamTakenTitle_exam}" >
+                        <f:selectItems value="#{examController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{examTakenController.create}" value="#{bundle.CreateExamTakenSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{examTakenController.prepareList}" value="#{bundle.CreateExamTakenShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateExamTakenIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

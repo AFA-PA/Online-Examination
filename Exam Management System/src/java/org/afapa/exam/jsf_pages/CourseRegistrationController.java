@@ -19,7 +19,7 @@ import org.afapa.exam.jsf_pages.util.PaginationHelper;
 
 @Named("courseRegistrationController")
 @SessionScoped
-public class CourseRegistrationController implements Serializable {
+public class CourseRegistrationController extends AbstractController implements Serializable {
 
     private CourseRegistration current;
     private DataModel items = null;
@@ -37,6 +37,10 @@ public class CourseRegistrationController implements Serializable {
             selectedItemIndex = -1;
         }
         return current;
+    }
+
+    public void setSelected(CourseRegistration cr) {
+        current = cr;
     }
 
     private CourseRegistrationFacade getFacade() {
@@ -87,6 +91,18 @@ public class CourseRegistrationController implements Serializable {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("resources/Bundle").getString("PersistenceErrorOccured"));
             return null;
         }
+    }
+
+    public String prepareRegister() {
+        return "register";
+    }
+
+    public String register() {
+        current.getRegisteredUsers().add(getCurrentUser());
+        getFacade().edit(current);
+        getCurrentUser().getCourseRegistrations().add(current);
+        JsfUtil.addSuccessMessage("Successfully registered");
+        return "dashboard";
     }
 
     public String prepareEdit() {

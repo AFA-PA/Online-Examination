@@ -6,6 +6,7 @@ package org.afapa.exam.entity;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -31,10 +32,10 @@ public class Course extends OrganizationalUnit implements Serializable {
 
     private String code;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
     private Department department;
 
-    @OneToMany(mappedBy = "course")
+    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "course")
     private List<CourseRegistration> courseRegistrations;
     /**
      *
@@ -71,7 +72,7 @@ public class Course extends OrganizationalUnit implements Serializable {
      */
     @Override
     public String toString() {
-        return "org.afapa.exam.entity.Course[ id=" + id + " ]";
+        return this.name;
     }
 
 }

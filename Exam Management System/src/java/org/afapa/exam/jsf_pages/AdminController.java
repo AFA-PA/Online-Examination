@@ -1,7 +1,10 @@
 package org.afapa.exam.jsf_pages;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.component.UIComponent;
@@ -228,7 +231,14 @@ public class AdminController implements Serializable {
                 throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Admin.class.getName());
             }
         }
+    }
 
+    public void getDashboard() {
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/manage/dashboard.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

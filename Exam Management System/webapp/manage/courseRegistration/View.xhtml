@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/manage/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewCourseRegistrationTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:outputText styleClass="mt-3 mb-3 header text-lg-center text-info" value="Registrations" />
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewCourseRegistrationLabel_id}"/>
+                    <h:outputText value="#{courseRegistrationController.selected.id}" title="#{bundle.ViewCourseRegistrationTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewCourseRegistrationLabel_year}"/>
+                    <h:outputText value="#{courseRegistrationController.selected.year}" title="#{bundle.ViewCourseRegistrationTitle_year}"/>
+                    <h:outputText value="#{bundle.ViewCourseRegistrationLabel_semester}"/>
+                    <h:outputText value="#{courseRegistrationController.selected.semester}" title="#{bundle.ViewCourseRegistrationTitle_semester}"/>
+                    <h:outputText value="#{bundle.ViewCourseRegistrationLabel_course}"/>
+                    <h:outputText value="#{courseRegistrationController.selected.course.name}" title="#{bundle.ViewCourseRegistrationTitle_course}"/>
+                </h:panelGrid>
+                <h:panelGroup rendered="true">
+                    <h:outputText value="Registered Users" />
+                    <h:dataTable value="#{courseRegistrationController.selected.registeredUsers}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListUserTitle_firstName}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.firstName}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListUserTitle_lastName}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.lastName}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListUserTitle_phoneNumber}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.phoneNumber}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListUserTitle_email}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.email}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{courseRegistrationController.destroyAndView}" value="#{bundle.ViewCourseRegistrationDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewCourseRegistrationEditLink}"/>
+                <br />
+                <h:commandLink action="#{courseRegistrationController.prepareCreate}" value="#{bundle.ViewCourseRegistrationCreateLink}" />
+                <br />
+                <h:commandLink action="#{courseRegistrationController.prepareList}" value="#{bundle.ViewCourseRegistrationShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewCourseRegistrationIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

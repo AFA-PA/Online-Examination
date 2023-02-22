@@ -128,3 +128,20 @@ body {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
+.site-footer .navbar-nav .nav-link {
+    color: #cbd5db;
+  }
+  
+  .site-footer .navbar-nav .nav-link:hover {
+    color: #ffffff;
+  }
+  
+  .site-footer .navbar-nav .nav-link.active {
+    font-weight: 500;
+  }
+  
+  .site-footer {
+  position: static;
+  bottom: 0;
+  width: 100%;
+  }
