@@ -24,10 +24,8 @@
                     <h:selectOneMenu id="department" value="#{courseController.selected.department}" title="#{bundle.EditCourseTitle_department}" >
                         <f:selectItems value="#{departmentController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.EditCourseLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{courseController.selected.id}" title="#{bundle.EditCourseTitle_id}" />
-                    <h:outputLabel value="#{bundle.EditCourseLabel_unitType}" for="unitType" />
-                    <h:inputText id="unitType" value="#{courseController.selected.unitType}" title="#{bundle.EditCourseTitle_unitType}" required="true" requiredMessage="#{bundle.EditCourseRequiredMessage_unitType}"/>
+                    
+                    
                 </h:panelGrid>
                 <h:commandLink action="#{courseController.update}" value="#{bundle.EditCourseSaveLink}"/>
                 <br />

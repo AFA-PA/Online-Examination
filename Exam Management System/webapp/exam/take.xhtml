@@ -34,7 +34,10 @@
                 <c:if  test="#{not active}">
                     <c:if var="over" test="#{examController.isOver(examController.selected)}" >
                         <h:outputText class="text-warning" value="This exam is over!" /><br /><br />
-                        <h:outputText value="Your result is: #{examTakenController.getResult(authController.currentUser , examController.selected)}" />
+                        <h:outputText value="Your result is: "/>
+                        <h:outputText value="#{examTakenController.getResult(authController.currentUser , examController.selected)}" >
+                            <f:convertNumber maxFractionDigits="2" minFractionDigits="2" type="percent" />
+                        </h:outputText>
                     </c:if>
                     <c:if test="#{not over}">
                         <h:outputText value="The exam has not started yet!" />

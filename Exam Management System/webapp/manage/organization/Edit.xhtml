@@ -22,12 +22,9 @@
                     <h:selectOneMenu id="createdBy" value="#{organizationController.selected.createdBy}" title="#{bundle.EditOrganizationTitle_createdBy}" >
                         <f:selectItems value="#{userController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.EditOrganizationLabel_createdOnDate}" for="createdOnDate" />
-                    <h:inputText id="createdOnDate" value="#{organizationController.selected.createdOnDate}" title="#{bundle.EditOrganizationTitle_createdOnDate}" />
-                    <h:outputLabel value="#{bundle.EditOrganizationLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{organizationController.selected.id}" title="#{bundle.EditOrganizationTitle_id}" />
-                    <h:outputLabel value="#{bundle.EditOrganizationLabel_unitType}" for="unitType" />
-                    <h:inputText id="unitType" value="#{organizationController.selected.unitType}" title="#{bundle.EditOrganizationTitle_unitType}" required="true" requiredMessage="#{bundle.EditOrganizationRequiredMessage_unitType}"/>
+                    <!--                                            <h:outputLabel value="# {bundle.EditOrganizationLabel_createdOnDate}" for="createdOnDate" />
+                                                                <h:inputText id="createdOnDate" value="# {organizationController.selected.createdOnDate}" title="# {bundle.EditOrganizationTitle_createdOnDate}" />-->
+
                 </h:panelGrid>
                 <h:commandLink action="#{organizationController.update}" value="#{bundle.EditOrganizationSaveLink}"/>
                 <br />

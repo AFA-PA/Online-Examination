@@ -15,8 +15,7 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditAnswerLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{answerController.selected.id}" title="#{bundle.EditAnswerTitle_id}" />
+                    
                     <h:outputLabel value="#{bundle.EditAnswerLabel_forQuestion}" for="forQuestion" />
                     <h:selectOneMenu id="forQuestion" value="#{answerController.selected.forQuestion}" title="#{bundle.EditAnswerTitle_forQuestion}" >
                         <f:selectItems value="#{questionController.itemsAvailableSelectOne}"/>

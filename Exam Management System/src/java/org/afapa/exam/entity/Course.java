@@ -37,6 +37,7 @@ public class Course extends OrganizationalUnit implements Serializable {
 
     @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "course")
     private List<CourseRegistration> courseRegistrations;
+
     /**
      *
      * @return

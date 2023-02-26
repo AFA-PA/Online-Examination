@@ -24,8 +24,7 @@
                     <h:selectOneMenu id="department" value="#{courseController.selected.department}" title="#{bundle.CreateCourseTitle_department}" >
                         <f:selectItems value="#{departmentController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.CreateCourseLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{courseController.selected.id}" title="#{bundle.CreateCourseTitle_id}" />
+                    
                     <h:inputHidden id="unitType" value="dep" />
                 </h:panelGrid>
                 <br />

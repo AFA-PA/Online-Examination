@@ -18,16 +18,12 @@
                 <h:panelGrid columns="2">
                     <h:outputLabel value="#{bundle.EditDepartmentLabel_name}" for="name" />
                     <h:inputText id="name" value="#{departmentController.selected.name}" title="#{bundle.EditDepartmentTitle_name}" />
-                    <h:outputLabel value="#{bundle.EditDepartmentLabel_createdODate}" for="createdODate" />
-                    <h:inputText id="createdODate" value="#{departmentController.selected.createdODate}" title="#{bundle.EditDepartmentTitle_createdODate}" />
                     <h:outputLabel value="#{bundle.EditDepartmentLabel_organization}" for="organization" />
                     <h:selectOneMenu id="organization" value="#{departmentController.selected.organization}" title="#{bundle.EditDepartmentTitle_organization}" >
                         <f:selectItems value="#{organizationController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.EditDepartmentLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{departmentController.selected.id}" title="#{bundle.EditDepartmentTitle_id}" />
-                    <h:outputLabel value="#{bundle.EditDepartmentLabel_unitType}" for="unitType" />
-                    <h:inputText id="unitType" value="#{departmentController.selected.unitType}" title="#{bundle.EditDepartmentTitle_unitType}" required="true" requiredMessage="#{bundle.EditDepartmentRequiredMessage_unitType}"/>
+                    <!--                    <h:outputLabel value="# {bundle.EditDepartmentLabel_createdODate}" for="createdODate" />
+                                        <h:inputText id="createdODate" value="# {departmentController.selected.createdODate}" title="# {bundle.EditDepartmentTitle_createdODate}" />-->
                 </h:panelGrid>
                 <h:commandLink action="#{departmentController.update}" value="#{bundle.EditDepartmentSaveLink}"/>
                 <br />

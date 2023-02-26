@@ -19,20 +19,17 @@
     </application>
     <navigation-rule>
         <from-view-id>/index.html</from-view-id>
+        <from-view-id>/</from-view-id>
         <navigation-case>
             <to-view-id>/index.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
         <description>admin</description>
-        <from-view-id>/admin/*</from-view-id>
+        <from-view-id>/manage/*</from-view-id>
         <navigation-case>
             <from-outcome>dashboard</from-outcome>
-            <to-view-id>/admin/dashboard.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-outcome>Create</from-outcome>
-            <to-view-id>/admin/CreateExam.xhtml</to-view-id>
+            <to-view-id>/manage/dashboard.xhtml</to-view-id>
         </navigation-case>
 
     </navigation-rule>

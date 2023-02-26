@@ -16,8 +16,7 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditExamTakenLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{examTakenController.selected.id}" title="#{bundle.EditExamTakenTitle_id}" />
+                    
                     <h:outputLabel value="#{bundle.EditExamTakenLabel_taker}" for="taker" />
                     <h:selectOneMenu id="taker" value="#{examTakenController.selected.taker}" title="#{bundle.EditExamTakenTitle_taker}" >
                         <f:selectItems value="#{userController.itemsAvailableSelectOne}"/>

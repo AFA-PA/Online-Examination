@@ -192,8 +192,8 @@ public class OrganizationFacadeREST extends AbstractFacade<Organization> {
         try {
             if (cvr.getStatus().equals(Status.VALID)) {
 //                if (idStr.getCallerGroups(cvr).contains("admin")) {
-                    List<Organization> orgs = super.findAll(); //em.createNamedQuery("Organization.findByAll", Organization.class).getResultList();
-                    return Response.status(Response.Status.FOUND).entity(orgs).build();
+                List<Organization> orgs = super.findAll(); //em.createNamedQuery("Organization.findByAll", Organization.class).getResultList();
+                return Response.status(Response.Status.FOUND).entity(orgs).build();
 //                }
 //                return Response.status(Response.Status.UNAUTHORIZED).build();
             }

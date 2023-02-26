@@ -31,6 +31,7 @@ import lombok.Setter;
 @Entity
 @XmlRootElement
 public class Exam implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     @Id

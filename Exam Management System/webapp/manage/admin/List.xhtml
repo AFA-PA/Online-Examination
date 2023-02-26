@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <ui:composition template="/manage/template.xhtml">
         <ui:define name="title">
@@ -24,26 +25,29 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListAdminTitle_user}"/>
                             </f:facet>
-                            <h:outputText value="#{item.user}"/>
+                            <h:outputText value="#{item.user.email}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
                             </f:facet>
-                            <h:commandLink action="#{adminController.prepareView}" value="#{bundle.ListAdminViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{adminController.prepareEdit}" value="#{bundle.ListAdminEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{adminController.destroy}" value="#{bundle.ListAdminDestroyLink}"/>
+                            <!--<h:commandLink action="# {adminController.prepareEdit}" value="# {bundle.ListAdminEditLink}"/>-->
+                            <!--<h:outputText value="  "/>-->
+                            <h:commandLink action="#{adminController.destroy}" value="Revoke"/>
                         </h:column>
                     </h:dataTable>
                 </h:panelGroup>
-                <br />
-                <h:commandLink action="#{adminController.prepareCreate}" value="#{bundle.ListAdminCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListAdminIndexLink}"/>
             </h:form>
+            <br />
+            <h:form>
+                <h:outputText value="#{bundle.ListAdminCreateLink}" />
+                <h:panelGrid columns="3">
+                    <h:outputLabel value="#{bundle.CreateAdminLabel_user}" for="user" />
+                    <h:selectOneMenu id="user" value="#{adminController.selected.user}" title="#{bundle.CreateAdminTitle_user}" >
+                        <f:selectItems value="#{userController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:commandLink action="#{adminController.create}" value="#{bundle.CreateAdminSaveLink}" />
+                </h:panelGrid></h:form>
         </ui:define>
     </ui:composition>
 

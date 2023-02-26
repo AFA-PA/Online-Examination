@@ -247,7 +247,7 @@ public class ExamTakenController implements Serializable {
         try {
             ExamTaken et = em.createQuery("SELECT et FROM ExamTaken et WHERE et.exam.id=:exam_id AND et.taker.id=:taker_id", ExamTaken.class)
                     .setParameter("exam_id", e.getId()).setParameter("taker_id", u.getId()).getSingleResult();
-        return et.getResult();
+            return et.getResult();
         } catch (NoResultException ex) {
             return Float.NaN;
         }

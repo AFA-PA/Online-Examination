@@ -29,6 +29,7 @@ import org.afapa.exam.entity.User;
  * @author ketij
  */
 public class Db {
+
     private static final Logger logger = Logger.getLogger("JSP_Auth");
 
     Connection conn;
@@ -140,7 +141,7 @@ public class Db {
         c.setDepartment(getDepartment(rs.getLong("DEPARTMENT_ID")));
         return c;
     }
-    
+
     public Department getDepartment(long id) throws SQLException {
         PreparedStatement stm = conn.prepareStatement("Select * from DEPARTMENT where ID=?");
         stm.setLong(1, id);

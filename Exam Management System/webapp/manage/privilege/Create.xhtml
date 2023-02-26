@@ -17,8 +17,7 @@
                 <h:panelGrid columns="2">
                     <h:outputLabel value="#{bundle.CreatePrivilegeLabel_heirarchichalPermission}" for="heirarchichalPermission" />
                     <h:inputText id="heirarchichalPermission" value="#{privilegeController.selected.heirarchichalPermission}" title="#{bundle.CreatePrivilegeTitle_heirarchichalPermission}" />
-                    <h:outputLabel value="#{bundle.CreatePrivilegeLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{privilegeController.selected.id}" title="#{bundle.CreatePrivilegeTitle_id}" />
+                    
                     <h:outputLabel value="#{bundle.CreatePrivilegeLabel_grantedTo}" for="grantedTo" />
                     <h:selectOneMenu id="grantedTo" value="#{privilegeController.selected.grantedTo}" title="#{bundle.CreatePrivilegeTitle_grantedTo}" >
                         <f:selectItems value="#{userController.itemsAvailableSelectOne}"/>

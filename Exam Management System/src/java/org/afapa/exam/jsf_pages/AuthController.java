@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
@@ -67,8 +68,10 @@ public class AuthController extends AbstractController implements Serializable {
             if (cvr.getStatus() == CredentialValidationResult.Status.VALID) {
                 logger.log(Level.INFO, "Signed in a user with email: {0}", newUser.getEmail());
                 password = null;
-                FacesContext.getCurrentInstance()
-                        .getExternalContext().getSessionMap().put("user", user);
+                Map<String, Object> sessionMap = FacesContext.getCurrentInstance()
+                        .getExternalContext().getSessionMap();
+                sessionMap.put("user", user);
+                sessionMap.put("groups", idStr.getCallerGroups(cvr));
                 newUser = user;
                 FacesContext.getCurrentInstance().getExternalContext().redirect("/user/dashboard.xhtml");
                 return "loggedin";
@@ -197,6 +200,7 @@ public class AuthController extends AbstractController implements Serializable {
     @Getter
     @Setter
     public class Auth {
+
         private String email = "";
         private String firstName = "";
         private String lastName = "";

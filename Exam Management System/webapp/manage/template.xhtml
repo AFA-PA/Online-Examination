@@ -40,22 +40,23 @@
         </header>
 
         <main role="main" class="container">
-            <c:if test="#{authController.loggedin}" var="loggedin">
+            <c:if test="#{adminController.admin}" var="admin">
                 <div class="navbar-nav">
                     <h:form class="row">
-                        <h:link class="ml-3 nav-item nav-link" value="Organization" outcome="/manage/organization/List.xhtml" />
-                        <h:link class="ml-3 nav-item nav-link" value="Department" outcome="/manage/department/List.xhtml"/>
-                        <h:link class="ml-3 nav-item nav-link" value="Course" outcome="/manage/course/List.xhtml" />
-                        <h:link class="ml-3 nav-item nav-link" value="Registration"  outcome="/manage/courseRegistration/List.xhtml" />
-                        <h:link class="ml-3 nav-item nav-link" value="Exam"  outcome="/manage/exam/List.xhtml" />
-                        <h:link class="ml-3 nav-item nav-link" value="Question"  outcome="/manage/question/List.xhtml" />
-                        <h:link class="ml-3 nav-item nav-link" value="Choice"  outcome="/manage/choice/List.xhtml" />
+                        <h:link class="ml-3 nav-item nav-link" value="Admins" outcome="/manage/admin/List.xhtml" />
+                        <h:link class="ml-3 nav-item nav-link" value="Organizations" outcome="/manage/organization/List.xhtml" />
+                        <h:link class="ml-3 nav-item nav-link" value="Departments" outcome="/manage/department/List.xhtml"/>
+                        <h:link class="ml-3 nav-item nav-link" value="Courses" outcome="/manage/course/List.xhtml" />
+                        <h:link class="ml-3 nav-item nav-link" value="Registrations"  outcome="/manage/courseRegistration/List.xhtml" />
+                        <h:link class="ml-3 nav-item nav-link" value="Exams"  outcome="/manage/exam/List.xhtml" />
+                        <h:link class="ml-3 nav-item nav-link" value="Questions"  outcome="/manage/question/List.xhtml" />
+                        <h:link class="ml-3 nav-item nav-link" value="Choices"  outcome="/manage/choice/List.xhtml" />
                         <h:link class="ml-3 nav-item nav-link" value="Taken Exams"  outcome="/manage/taken_exam/List.xhtml" />
                     </h:form>
                 </div>
                 <div class="col-auto">
                     <ui:insert name="body">Main Body</ui:insert>
-                </div></c:if><c:if test="#{not loggedin}" ><h:outputText style = "font-size:  large; margin-bottom: 50px; margin-top: 50px" styleClass="text-warning text-lg-center " value="Login first" /> </c:if>
+                </div></c:if><c:if test="#{not admin}" ><h:outputText value="Unautherized"  style = "font-size:  large; margin-bottom: 50px; margin-top: 50px" styleClass="text-warning text-lg-center " /> </c:if>
         </main>
     </h:body>
 

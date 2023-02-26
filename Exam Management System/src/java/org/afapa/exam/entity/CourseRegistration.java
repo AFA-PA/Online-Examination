@@ -39,6 +39,7 @@ import lombok.Setter;
 //@SecondaryTable(name = "UserRegistration")
 @XmlRootElement
 public class CourseRegistration implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)

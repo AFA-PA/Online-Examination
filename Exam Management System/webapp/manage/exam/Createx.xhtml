@@ -27,8 +27,7 @@
                     <h:selectOneMenu id="course" value="#{examController.selected.registration}" title="#{bundle.CreateExamTitle_course}" >
                         <f:selectItems value="#{courseController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.CreateExamLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{examController.selected.id}" title="#{bundle.CreateExamTitle_id}" />
+                    
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{examController.create}" value="#{bundle.CreateExamSaveLink}" />

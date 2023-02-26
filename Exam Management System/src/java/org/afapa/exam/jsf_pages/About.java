@@ -19,12 +19,13 @@ public class About implements Serializable {
     public static final Member FASIKA = new Member("Fasika", "Zergaw", "ugr/23653/13");
 
     public static final Member[] members = new Member[]{
-        About.ABUZER, About.ABDULAHI, About.PETROS, About.ABDELA, About.FASIKA
+        About.ABUZER, About.FASIKA, About.ABDULAHI, About.PETROS, About.ABDELA
     };
 
     @Setter
     @Getter
     public static class Member {
+
         String firstName;
         String lastName;
         String id;

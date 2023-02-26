@@ -21,7 +21,7 @@ import org.afapa.exam.jsf_pages.util.PaginationHelper;
 
 @Named("organizationController")
 @SessionScoped
-public class OrganizationController implements Serializable {
+public class OrganizationController extends AbstractController implements Serializable {
 
     private Organization current;
     private DataModel items = null;
@@ -82,6 +82,9 @@ public class OrganizationController implements Serializable {
 
     public String create() {
         try {
+            if (current.getCreatedBy() == null) {
+                current.setCreatedBy(getCurrentUser());
+            }
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("resources/Bundle").getString("OrganizationCreated"));
             return "dashboard";

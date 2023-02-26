@@ -41,6 +41,7 @@ import org.afapa.exam.jsf_pages.util.PaginationHelper;
 @Named("examController")
 @SessionScoped
 public class ExamController extends AbstractController implements Serializable {
+
     private static final Logger logger = Logger.getLogger("JSP_ExamCtrl");
 
     @PersistenceContext(unitName = "WebApplicationTest3PU")
@@ -266,10 +267,15 @@ public class ExamController extends AbstractController implements Serializable {
 
     public String update() {
         try {
-            getFacade().edit(current);
+            utx.begin();
+            current.getQuestions().forEach((q) -> {
+                em.merge(q);
+            });
+            em.merge(current);
+            utx.commit();
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("resources/Bundle").getString("ExamUpdated"));
             return "View";
-        } catch (Exception e) {
+        } catch (IllegalStateException | SecurityException | HeuristicMixedException | HeuristicRollbackException | NotSupportedException | RollbackException | SystemException e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("resources/Bundle").getString("PersistenceErrorOccured"));
             return null;
         }

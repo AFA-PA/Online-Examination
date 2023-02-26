@@ -43,6 +43,7 @@ import org.afapa.exam.identity.UserIdentityStore;
 @Stateless
 @Path("exam")
 public class ExamFacadeREST extends AbstractFacade<Exam> {
+
     private static final Logger logger = Logger.getLogger("Organization Rest Log");
 
     @PersistenceContext(unitName = "WebApplicationTest3PU")

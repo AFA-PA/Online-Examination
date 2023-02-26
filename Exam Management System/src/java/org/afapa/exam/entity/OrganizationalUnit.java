@@ -46,7 +46,6 @@ public abstract class OrganizationalUnit implements Serializable {
 //        DEPARTMENT,
 //        ORGANIZATION
 //    }
-
     /**
      *
      * @return

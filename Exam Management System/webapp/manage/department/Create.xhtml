@@ -24,10 +24,8 @@
                     <h:selectOneMenu id="organization" value="#{departmentController.selected.organization}" title="#{bundle.CreateDepartmentTitle_organization}" >
                         <f:selectItems value="#{organizationController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.CreateDepartmentLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{departmentController.selected.id}" title="#{bundle.CreateDepartmentTitle_id}" />
-                    <h:outputLabel value="#{bundle.CreateDepartmentLabel_unitType}" for="unitType" />
-                    <h:inputText id="unitType" value="#{departmentController.selected.unitType}" title="#{bundle.CreateDepartmentTitle_unitType}" required="true" requiredMessage="#{bundle.CreateDepartmentRequiredMessage_unitType}"/>
+                    
+                    
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{departmentController.create}" value="#{bundle.CreateDepartmentSaveLink}" />
