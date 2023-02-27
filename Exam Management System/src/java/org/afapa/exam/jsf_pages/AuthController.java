@@ -139,6 +139,13 @@ public class AuthController extends AbstractController implements Serializable {
             logger.log(Level.INFO, "{0}", ec);
             return "login";
         }
+        User user = (User) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
+//        try {
+//            utx.begin();
+//            em.refresh(user);
+//            utx.commit();
+//        } catch (IllegalStateException | SecurityException | HeuristicMixedException | HeuristicRollbackException | NotSupportedException | RollbackException | SystemException  ex) {
+//        }
         return "dashboard";
     }
 

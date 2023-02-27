@@ -27,7 +27,7 @@
                     </div>
 
                     <legend title="Courses" ><span class="text-uppercase black" >My Courses</span></legend>
-                    <br /><form><h:button class="btn-primary" outcome="/user/register.xhtml" value="register new" /></form>
+                    <br /><form><h:button class="btn-secondary" outcome="/user/register.xhtml" value="register new" /></form>
                     <h:panelGroup rendered="#{authController.regCount > 0}">
                         <h:dataTable title="Courses" value="#{authController.currentUser.courseRegistrations}" var="reg" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
                             <h:column>
